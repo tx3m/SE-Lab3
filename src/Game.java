@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,7 +20,8 @@ public class Game implements Observable
 {
     private static Game game;
     //private Player player; // single player
-    private ArrayList<Player> players;
+    //private ArrayList<Player> players;
+    private HashMap<Player,Room> playersMap;
     public Room startRoom;
 
     /**
@@ -28,7 +30,8 @@ public class Game implements Observable
     private Game()
     {
         startRoom= createRooms();
-        players = new ArrayList<Player>();
+        //players = new ArrayList<Player>();
+        playersMap = new HashMap<>();
     }
 
     public static Game getGame()
@@ -97,29 +100,46 @@ public class Game implements Observable
     {
         //player = p; // overwrites an existing player
         //welcome(player);
-        players.add(p);
-        welcome(players.get(players.indexOf(p)));
-        notifyPlayers();
+        //players.add(p);
+        //welcome(players.get(players.indexOf(p)));
+
+        playersMap.put(p, p.getCurrentRoom());
+        welcome(p);
+        notifyPlayers(); //not sure if it is working yet
     }
 
     public void deletePlayer(Player p)
     {
-        //if(p.equals(player)){
-        //    farewell(player);
-        //}
-        int playerIndex = players.indexOf(p);
-        if(p.equals(players.get(playerIndex))) {
-            farewell(p);
+        /*
+        if(p.equals(player)){
+            farewell(player);
         }
-        /* player index +1 as we would start from 0, which doesn't make sense to show */
+                //this is the version with arraylist
+                int playerIndex = players.indexOf(p);
+                if(p.equals(players.get(playerIndex))) {
+                    farewell(p);
+                }
+
+        player index +1 as we would start from 0, which doesn't make sense to show
         System.out.println("Player " + (playerIndex + 1) + " deleted!");
         players.remove(playerIndex);
-        notifyPlayers();
+        */
+        //this is the version with HashMap
+        if(p.equals(playersMap.get(p))) {
+            farewell(p);
+        }
+        System.out.println("Player " + p.getName() + " deleted!");
+        playersMap.remove(p);
+        notifyPlayers(); //not sure if it is working yet
     }
             
     public void notifyPlayers(){
-        for (Player player : players){
-            player.update(game, startRoom);
+//        //this is the version with arraylist
+//        for (Player player : players){
+//            player.update(game, startRoom);
+//        }
+        for (Observer observer : playersMap.keySet()){
+            observer.update(game, startRoom);
         }
     }
 }

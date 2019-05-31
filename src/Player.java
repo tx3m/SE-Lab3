@@ -159,6 +159,7 @@ public class Player implements Observer
     }
     
     public void update(Game game, Room room){
-    
+        this.game = game;
+        this.currentRoom = room;
     }
 }
