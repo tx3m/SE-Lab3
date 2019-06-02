@@ -19,8 +19,6 @@ import java.util.List;
 public class Game implements Observable
 {
     private static Game game;
-    //private Player player; // single player
-    //private ArrayList<Player> players;
     private static HashMap<Player,Room> playersMap;
     public Room startRoom;
 
@@ -30,7 +28,6 @@ public class Game implements Observable
     private Game()
     {
         startRoom= createRooms();
-        //players = new ArrayList<Player>();
         playersMap = new HashMap<Player, Room>();
     }
 
@@ -99,54 +96,33 @@ public class Game implements Observable
 
     public void addPlayer(Player p)
     {
-        //player = p; // overwrites an existing player
-        //welcome(player);
-        //players.add(p);
-        //welcome(players.get(players.indexOf(p)));
-
         welcome(p);
         playersMap.put(p, p.getCurrentRoom());
-
-        //notifyPlayers(); //not sure if it is working yet
     }
 
     public void deletePlayer(Player p)
     {
-        /*
-        if(p.equals(player)){
-            farewell(player);
-        }
-                //this is the version with arraylist
-                int playerIndex = players.indexOf(p);
-                if(p.equals(players.get(playerIndex))) {
-                    farewell(p);
-                }
-
-        player index +1 as we would start from 0, which doesn't make sense to show
-        System.out.println("Player " + (playerIndex + 1) + " deleted!");
-        players.remove(playerIndex);
-        */
-        //this is the version with HashMap
+        farewell(p);
         if(p.equals(playersMap.get(p))) {
             farewell(p);
+
         }
         System.out.println("Player " + p.getName() + " deleted!");
+        if(playersMap.size() == 1){
+            System.out.println("This is here Thank you for playing. Have a good day!");
+        };
         playersMap.remove(p);
         notifyPlayers(); //not sure if it is working yet
     }
             
     public void notifyPlayers(){
-//        //this is the version with arraylist
-//        for (Player player : players){
-//            player.update(game, startRoom);
-//        }
         for (Observer observer : playersMap.keySet()){
             Room testRoom = playersMap.get(observer);
             // create new call to playersMap.keySet()
             // Iterate trough the map and notify the position of the player
 
             observer.update(game, playersMap.get(observer).getRoom()); //added the method getRoom, just for testing. Otherwise it should use the player.getCurrentRoom()
-            System.out.println("Current Players" + playersMap.entrySet().toString() +"\n");
+            System.out.println("Current Players " + playersMap.get(observer).toString());
         }
     }
 }

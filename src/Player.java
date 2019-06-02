@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -25,27 +24,19 @@ public class Player implements Observer
     private PlayerUI cui;
     private PlayerUI gui;
     private Game game;
-    private ArrayList<String> backpack;
 
     /**
      * Constructor for objects of class Player
      */
-    public Player(String name, boolean flagGUI)
+    public Player(String name, boolean flagCUI)
     {
         this.name= name;
-//        if(flagGUI) gui= new GUI(this);
-//        ConsoleUI ui = new ConsoleUI(this);
-//        cui= ui;
+        if(flagCUI) cui= new ConsoleUI(this);
 
         GUI ui = new GUI(this);
         gui = ui;
 
-        System.out.println(name);
-
         register();
-        //this.game.notifyPlayers();
-        ui.start(); // this function has no implementation yet!
-        backpack = new ArrayList();
     }
 
     /**
@@ -77,10 +68,7 @@ public class Player implements Observer
     /**
      * Return the current room for this player.
      */
-    public Room getCurrentRoom()
-    {
-        return currentRoom;
-    }
+    public Room getCurrentRoom(){return currentRoom;}
 
     /**
      * Set the current room for this player.
@@ -88,10 +76,6 @@ public class Player implements Observer
     public void setCurrentRoom(Room room)
     {
         currentRoom = room;
-    }
-
-    public void addToBackpack(String itemToAdd){
-        backpack.add(itemToAdd);
     }
 
     /**
@@ -111,22 +95,6 @@ public class Player implements Observer
             println(nextRoom.getLongDescription());
         }
     }
-/*
-    public void pickUp(String itemToPick)
-    {
-        // Try to pick up item
-        Room nextRoom = currentRoom.getExit(itemToPick);
-
-        if (itemAvailable == null) {
-            println("There is no item!");
-        }
-        else {
-            addToBackpack(itemToPick);
-            println(nextRoom.getLongDescription());
-        }
-    }
-
- */
 
     public void quit()
     {
@@ -142,8 +110,7 @@ public class Player implements Observer
         System.out.println("Player [-GUI] YourPlayerName");                      
     }
 
-
-    
+    /*Updates the Status of game and room*/
     public void update(Game game, Room room){
         this.game = game;
         this.currentRoom = room;
@@ -151,20 +118,18 @@ public class Player implements Observer
 
     public static void main(String [] argv)
     {
-        boolean flagGUI=false;
-        //String name= "defaultPlayer";
-//        String name;
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("Enter player name:");
-//        name = scan.nextLine();
-        String name= "italo";
+        boolean flagCUI=false;
+        String name;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter player name:");
+        name = scan.nextLine();
 
         //What does this loop do?
         for(int i=0; i<argv.length; i++){
-            if ( argv[i].equals("-GUI") ) flagGUI=true;
+            if ( argv[i].equals("-GUI") ) flagCUI=true;
             else name= argv[i];
         }
 
-        new Player(name, flagGUI);
+        new Player(name, flagCUI);
     }
 }

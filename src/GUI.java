@@ -23,8 +23,8 @@ public class GUI implements PlayerUI
     public GUI(Player p)
     {
         player= p;
-        System.out.println("Gui for player:"+ player.getName());
-        createFrame(player.getName(), 60, 80);
+        System.out.println("Gui for player: "+ "\"" + player.getName()+ "\" created!");
+        createFrame(player.getName(), 30, 40);
     }
 
     private void createFrame(String name, int len, int wid)
@@ -57,11 +57,10 @@ public class GUI implements PlayerUI
             quitCmd.setSecondWord(null);
             quitCmd.execute(player);
             closeWindow(frame);
-            //frame.setVisible(false);
         });
+
         //start button panel
         startButton.addActionListener(e -> {
-           //contentPane.add(directionButtons, BorderLayout.EAST);
             String newName;
             Scanner scan = new Scanner(System.in);
             System.out.println("Enter new player name:");
@@ -72,11 +71,6 @@ public class GUI implements PlayerUI
         mainButtons.add(startButton);        mainButtons.add(quitButton);
         
         contentPane.add(mainButtons, BorderLayout.WEST);
-        
-        // contentPane.add(activeButton("north"), BorderLayout.NORTH);
-        // contentPane.add(activeButton("south"), BorderLayout.SOUTH);
-        // contentPane.add(activeButton("west"), BorderLayout.WEST);
-        // contentPane.add(activeButton("east"), BorderLayout.EAST);        
         frame.pack();
         frame.setVisible(true);
     }
