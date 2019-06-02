@@ -81,5 +81,7 @@ public class Room
     {
         return exits.get(direction);
     }
+
+    public Room getRoom(){ return this;}; //added later, not sure if it works. Using it in Game notifyPlayers()
 }
 

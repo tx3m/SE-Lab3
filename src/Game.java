@@ -21,7 +21,7 @@ public class Game implements Observable
     private static Game game;
     //private Player player; // single player
     //private ArrayList<Player> players;
-    private HashMap<Player,Room> playersMap;
+    private static HashMap<Player,Room> playersMap;
     public Room startRoom;
 
     /**
@@ -31,13 +31,14 @@ public class Game implements Observable
     {
         startRoom= createRooms();
         //players = new ArrayList<Player>();
-        playersMap = new HashMap<>();
+        playersMap = new HashMap<Player, Room>();
     }
 
     public static Game getGame()
     {
         if(game == null){
             game = new Game();
+
         }
         return game; 
     }
@@ -61,7 +62,7 @@ public class Game implements Observable
         outside.setExit("east", theatre);
         outside.setExit("south", lab);
         outside.setExit("west", pub);
-        outside.setExit("upstairs", library);
+        //outside.setExit("upstairs", library);
 
         library.setExit("downstairs", outside);
 
@@ -103,9 +104,10 @@ public class Game implements Observable
         //players.add(p);
         //welcome(players.get(players.indexOf(p)));
 
-        playersMap.put(p, p.getCurrentRoom());
         welcome(p);
-        notifyPlayers(); //not sure if it is working yet
+        playersMap.put(p, p.getCurrentRoom());
+
+        //notifyPlayers(); //not sure if it is working yet
     }
 
     public void deletePlayer(Player p)
@@ -139,7 +141,12 @@ public class Game implements Observable
 //            player.update(game, startRoom);
 //        }
         for (Observer observer : playersMap.keySet()){
-            observer.update(game, startRoom);
+            Room testRoom = playersMap.get(observer);
+            // create new call to playersMap.keySet()
+            // Iterate trough the map and notify the position of the player
+
+            observer.update(game, playersMap.get(observer).getRoom()); //added the method getRoom, just for testing. Otherwise it should use the player.getCurrentRoom()
+            System.out.println("Current Players" + playersMap.entrySet().toString() +"\n");
         }
     }
 }

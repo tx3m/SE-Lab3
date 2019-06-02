@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Scanner;
 import javax.swing.*;
 
 /**
@@ -22,20 +23,60 @@ public class GUI implements PlayerUI
     public GUI(Player p)
     {
         player= p;
-        createFrame(p.getName(), 60, 80);
+        System.out.println("Gui for player:"+ player.getName());
+        createFrame(player.getName(), 60, 80);
     }
 
     private void createFrame(String name, int len, int wid)
     {
         JFrame frame= new JFrame(name);
+        frame.setVisible(false);
+
         textArea= new JTextArea(len, wid);
         Container contentPane= frame.getContentPane();
         contentPane.setLayout(new BorderLayout());
-        contentPane.add(new JScrollPane(textArea), BorderLayout.CENTER);
-        contentPane.add(activeButton("north"), BorderLayout.NORTH);
-        contentPane.add(activeButton("south"), BorderLayout.SOUTH);
-        contentPane.add(activeButton("west"), BorderLayout.WEST);
-        contentPane.add(activeButton("east"), BorderLayout.EAST);        
+        contentPane.add(new JScrollPane(textArea), BorderLayout.CENTER);        
+        
+        //direction buttons panel
+        JPanel directionButtons = new JPanel();        
+        BoxLayout boxLayout = new BoxLayout(directionButtons, BoxLayout.Y_AXIS);
+        directionButtons.setLayout(boxLayout);        
+        directionButtons.add(activeButton("north"));
+        directionButtons.add(activeButton("south"));
+        directionButtons.add(activeButton("east"));
+        directionButtons.add(activeButton("west"));
+        contentPane.add(directionButtons, BorderLayout.EAST);
+        
+        
+        //quit button panel
+        JPanel mainButtons = new JPanel(new GridLayout(2,0));
+        JButton startButton = new JButton("Start");
+        JButton quitButton = new JButton("Quit");
+        quitButton.addActionListener(e -> {
+            QuitCommand quitCmd = new QuitCommand();
+            quitCmd.setSecondWord(null);
+            quitCmd.execute(player);
+            closeWindow(frame);
+            //frame.setVisible(false);
+        });
+        //start button panel
+        startButton.addActionListener(e -> {
+           //contentPane.add(directionButtons, BorderLayout.EAST);
+            String newName;
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Enter new player name:");
+            newName = scan.nextLine();
+            Game.getGame().addPlayer(new Player(newName));
+        });
+        
+        mainButtons.add(startButton);        mainButtons.add(quitButton);
+        
+        contentPane.add(mainButtons, BorderLayout.WEST);
+        
+        // contentPane.add(activeButton("north"), BorderLayout.NORTH);
+        // contentPane.add(activeButton("south"), BorderLayout.SOUTH);
+        // contentPane.add(activeButton("west"), BorderLayout.WEST);
+        // contentPane.add(activeButton("east"), BorderLayout.EAST);        
         frame.pack();
         frame.setVisible(true);
     }
@@ -62,20 +103,12 @@ public class GUI implements PlayerUI
         textArea.append(s+ "\n");
     }
 
-
-    public Command getCommand() {
-
-        return null;
-    }
-
     @Override
     public void start() {
 
     }
 
-
+    public void closeWindow(JFrame frameToClose){
+        frameToClose.dispose();
+    }
 }
-
-
-
-

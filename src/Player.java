@@ -40,8 +40,11 @@ public class Player implements Observer
         GUI ui = new GUI(this);
         gui = ui;
 
+        System.out.println(name);
+
         register();
-        ui.start();
+        //this.game.notifyPlayers();
+        ui.start(); // this function has no implementation yet!
         backpack = new ArrayList();
     }
 
@@ -61,7 +64,7 @@ public class Player implements Observer
 
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
     public void println(String s)
@@ -139,15 +142,22 @@ public class Player implements Observer
         System.out.println("Player [-GUI] YourPlayerName");                      
     }
 
+
+    
+    public void update(Game game, Room room){
+        this.game = game;
+        this.currentRoom = room;
+    }
+
     public static void main(String [] argv)
     {
-        usage();
         boolean flagGUI=false;
         //String name= "defaultPlayer";
-        String name;
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter player name:");
-        name = scan.nextLine();
+//        String name;
+//        Scanner scan = new Scanner(System.in);
+//        System.out.println("Enter player name:");
+//        name = scan.nextLine();
+        String name= "italo";
 
         //What does this loop do?
         for(int i=0; i<argv.length; i++){
@@ -156,10 +166,5 @@ public class Player implements Observer
         }
 
         new Player(name, flagGUI);
-    }
-    
-    public void update(Game game, Room room){
-        this.game = game;
-        this.currentRoom = room;
     }
 }

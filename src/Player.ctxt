@@ -9,10 +9,10 @@ comment10.target=void\ quit()
 comment10.text=\r\n\ \ \ \ public\ void\ pickUp(String\ itemToPick)\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ //\ Try\ to\ pick\ up\ item\r\n\ \ \ \ \ \ \ \ Room\ nextRoom\ \=\ currentRoom.getExit(itemToPick);\r\n\r\n\ \ \ \ \ \ \ \ if\ (itemAvailable\ \=\=\ null)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ println("There\ is\ no\ item\!");\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ else\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ addToBackpack(itemToPick);\r\n\ \ \ \ \ \ \ \ \ \ \ \ println(nextRoom.getLongDescription());\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ }\r\n\r\n
 comment11.params=
 comment11.target=void\ usage()
-comment12.params=argv
-comment12.target=void\ main(java.lang.String[])
-comment13.params=game\ room
-comment13.target=void\ update(Game,\ Room)
+comment12.params=game\ room
+comment12.target=void\ update(Game,\ Room)
+comment13.params=argv
+comment13.target=void\ main(java.lang.String[])
 comment2.params=name
 comment2.target=Player(java.lang.String)
 comment2.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n
