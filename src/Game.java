@@ -19,6 +19,15 @@ import java.util.List;
 public class Game implements Observable
 {
     private static Game game;
+
+    public static HashMap<Player, Room> getPlayersMap() {
+        return playersMap;
+    }
+
+    public static void setPlayersMap(HashMap<Player, Room> playersMap) {
+        Game.playersMap = playersMap;
+    }
+
     private static HashMap<Player,Room> playersMap;
     public Room startRoom;
 
@@ -121,8 +130,8 @@ public class Game implements Observable
             // create new call to playersMap.keySet()
             // Iterate trough the map and notify the position of the player
 
-            observer.update(game, playersMap.get(observer).getRoom()); //added the method getRoom, just for testing. Otherwise it should use the player.getCurrentRoom()
-            System.out.println("Current Players " + playersMap.get(observer).toString());
+//            observer.update(game, playersMap.get(observer).getRoom()); //added the method getRoom, just for testing. Otherwise it should use the player.getCurrentRoom()
+            observer.println("Current Players " + playersMap.get(observer).getShortDescription());
         }
     }
 }

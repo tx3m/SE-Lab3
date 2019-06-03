@@ -76,6 +76,7 @@ public class Player implements Observer
     public void setCurrentRoom(Room room)
     {
         currentRoom = room;
+        Game.getGame().getPlayersMap().put(this,room);// added later
     }
 
     /**
@@ -93,6 +94,7 @@ public class Player implements Observer
         else {
             setCurrentRoom(nextRoom);
             println(nextRoom.getLongDescription());
+            Game.getGame().notifyPlayers();
         }
     }
 

@@ -48,10 +48,11 @@ public class GUI implements PlayerUI
         contentPane.add(directionButtons, BorderLayout.EAST);
         
         
-        //quit button panel
+        //start and quit buttons panel
         JPanel mainButtons = new JPanel(new GridLayout(2,0));
         JButton startButton = new JButton("Start");
         JButton quitButton = new JButton("Quit");
+        //quit button panel
         quitButton.addActionListener(e -> {
             QuitCommand quitCmd = new QuitCommand();
             quitCmd.setSecondWord(null);
@@ -68,9 +69,24 @@ public class GUI implements PlayerUI
             Game.getGame().addPlayer(new Player(newName));
         });
         
-        mainButtons.add(startButton);        mainButtons.add(quitButton);
-        
+        mainButtons.add(startButton);
+        mainButtons.add(quitButton);
         contentPane.add(mainButtons, BorderLayout.WEST);
+
+        JMenuBar menuBar;
+        JMenu menu, submenu;
+        JMenuItem menuItem;
+
+        //Create the menu bar.
+        menuBar = new JMenuBar();
+
+        //Build the first menu.
+        menu = new JMenu("A Menu");
+        menu.setMnemonic(KeyEvent.VK_A);
+        menu.getAccessibleContext().setAccessibleDescription(
+                "The only menu in this program that has menu items");
+        menuBar.add(menu);
+
         frame.pack();
         frame.setVisible(true);
     }
