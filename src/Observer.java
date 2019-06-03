@@ -10,6 +10,6 @@ public interface Observer
     /**
      * This method will update all Players with the changes in Game
      */
-   void update(Game game, Room room);
+   void update(Room room);
    void println(String s);
 }

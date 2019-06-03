@@ -22,7 +22,7 @@ public class GUI implements PlayerUI
      */
     public GUI(Player p)
     {
-        player= p;
+        player = p;
         System.out.println("Gui for player: "+ "\"" + player.getName()+ "\" created!");
         createFrame(player.getName(), 30, 40);
     }

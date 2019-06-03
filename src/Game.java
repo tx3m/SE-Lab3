@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  *  This class is the game class of the "World of Zuul" application. 
@@ -90,6 +88,7 @@ public class Game implements Observable
     private void welcome(Player player)
     {
         player.setCurrentRoom(startRoom);
+        player.setPreviousRoom(startRoom);
         player.println("");
         player.println("Welcome to The World of Zuul!");
         player.println("The World of Zuul is a new, incredibly boring adventure game.");
@@ -126,12 +125,28 @@ public class Game implements Observable
             
     public void notifyPlayers(){
         for (Observer observer : playersMap.keySet()){
-            Room testRoom = playersMap.get(observer);
-            // create new call to playersMap.keySet()
-            // Iterate trough the map and notify the position of the player
+            Player p = (Player) observer;
 
-//            observer.update(game, playersMap.get(observer).getRoom()); //added the method getRoom, just for testing. Otherwise it should use the player.getCurrentRoom()
-            observer.println("Current Players " + playersMap.get(observer).getShortDescription());
+            System.out.println("Current room: " + p.getName() + " " + p.getCurrentRoom().getShortDescription());
+            System.out.println("Prev room: "+ p.getName()+ " " + p.getPreviousRoom().getShortDescription());
+
+            for (Player player: playersMap.keySet()) {
+                //if we have two different players AND they are in the same room
+                if (!player.equals(p) && player.getCurrentRoom().equals(p.getCurrentRoom())) {
+                    //if this player did not move AND someone else entered the room
+                    if (p.getCurrentRoom().equals(p.getPreviousRoom())) {
+                        p.println("Player " + player.getName() + " entered this room!");
+                    } else { //the this player entered a room and there is another player here
+                        p.println("Player " + player.getName() + " is in this room!");
+                    }
+                }
+            }
+
+            observer.update(playersMap.get(observer).getRoom());
+
+//            if (!p.getCurrentRoom().equals(p.getPreviousRoom())) {
+//                p.println("Player " + p.getName() + " " + p.getCurrentRoom().getShortDescription());
+//            }
         }
     }
 }

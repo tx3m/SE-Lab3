@@ -21,6 +21,10 @@ public class Player implements Observer
 {
     private String name;
     private Room currentRoom;
+
+
+
+    private Room previousRoom;
     private PlayerUI cui;
     private PlayerUI gui;
     private Game game;
@@ -76,7 +80,7 @@ public class Player implements Observer
     public void setCurrentRoom(Room room)
     {
         currentRoom = room;
-        Game.getGame().getPlayersMap().put(this,room);// added later
+        Game.getGame().getPlayersMap().put(this,room); //added later
     }
 
     /**
@@ -98,6 +102,14 @@ public class Player implements Observer
         }
     }
 
+    public Room getPreviousRoom() {
+        return previousRoom;
+    }
+
+    public void setPreviousRoom(Room previousRoom) {
+        this.previousRoom = previousRoom;
+    }
+
     public void quit()
     {
         game.deletePlayer(this);
@@ -113,8 +125,8 @@ public class Player implements Observer
     }
 
     /*Updates the Status of game and room*/
-    public void update(Game game, Room room){
-        this.game = game;
+    public void update(Room room){
+        this.setPreviousRoom(this.currentRoom);
         this.currentRoom = room;
     }
 
