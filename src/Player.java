@@ -21,9 +21,6 @@ public class Player implements Observer
 {
     private String name;
     private Room currentRoom;
-
-
-
     private Room previousRoom;
     private PlayerUI cui;
     private PlayerUI gui;
@@ -126,24 +123,24 @@ public class Player implements Observer
 
     /*Updates the Status of game and room*/
     public void update(Room room){
-        this.setPreviousRoom(this.currentRoom);
+        this.setPreviousRoom(this.currentRoom); // was this.currentRoom before
         this.currentRoom = room;
     }
 
-    public static void main(String [] argv)
-    {
-        boolean flagCUI=false;
-        String name;
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter player name:");
-        name = scan.nextLine();
-
-        //What does this loop do?
-        for(int i=0; i<argv.length; i++){
-            if ( argv[i].equals("-GUI") ) flagCUI=true;
-            else name= argv[i];
-        }
-
-        new Player(name, flagCUI);
-    }
+//    public static void main(String [] argv)
+//    {
+//        boolean flagCUI=false;
+//        String name;
+//        Scanner scan = new Scanner(System.in);
+//        System.out.println("Enter player name:");
+//        name = scan.nextLine();
+//
+//        //What does this loop do?
+//        for(int i=0; i<argv.length; i++){
+//            if ( argv[i].equals("-GUI") ) flagCUI=true;
+//            else name= argv[i];
+//        }
+//
+//        new Player(name, flagCUI);
+//    }
 }

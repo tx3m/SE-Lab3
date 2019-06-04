@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Scanner;
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 
 /**
  * Most simple Zuul graphical user interface class.
@@ -16,6 +17,7 @@ public class GUI implements PlayerUI
 {
     private Player player;
     private JTextArea textArea;
+    DefaultCaret caret;
 
     /**
      * Constructor for objects of class GUI
@@ -32,7 +34,10 @@ public class GUI implements PlayerUI
         JFrame frame= new JFrame(name);
         frame.setVisible(false);
 
-        textArea= new JTextArea(len, wid);
+        textArea = new JTextArea(len, wid);
+        caret = (DefaultCaret)textArea.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
         Container contentPane= frame.getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(new JScrollPane(textArea), BorderLayout.CENTER);        
@@ -68,7 +73,9 @@ public class GUI implements PlayerUI
             newName = scan.nextLine();
             Game.getGame().addPlayer(new Player(newName));
         });
-        
+
+        BoxLayout boxMainLayout = new BoxLayout(mainButtons, BoxLayout.Y_AXIS);
+        mainButtons.setLayout(boxMainLayout);
         mainButtons.add(startButton);
         mainButtons.add(quitButton);
         contentPane.add(mainButtons, BorderLayout.WEST);
