@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="443.8609135962076" y="117.0">PlayerUI</node>
+    <node x="111.98973820297346" y="495.0">CommandWords</node>
+    <node x="272.41475975005375" y="572.0">ConsoleUI</node>
+    <node x="314.8609135962076" y="117.0">GoCommand</node>
+    <node x="374.8214833369244" y="204.0">GUI</node>
+    <node x="222.16475975005375" y="117.0">Room</node>
+    <node x="261.16475975005375" y="331.0">Player</node>
+    <node x="154.49999999999994" y="408.0">HelpCommand</node>
+    <node x="222.16475975005375" y="204.0">Game</node>
+    <node x="137.64359872153977" y="0.0">Command</node>
+    <node x="10.499999999999943" y="408.0">QuitCommand</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ConsoleUI" target="CommandWords">
+      <point x="-27.0" y="-13.5" />
+      <point x="299.41475975005375" y="542.0" />
+      <point x="209.48973820297346" y="542.0" />
+      <point x="32.5" y="13.5" />
+    </edge>
+    <edge source="GUI" target="Player">
+      <point x="24.375000000000014" y="13.5" />
+      <point x="431.6964833369244" y="301.0" />
+      <point x="338.1262982115922" y="301.0" />
+      <point x="33.46153846153845" y="-13.5" />
+    </edge>
+    <edge source="CommandWords" target="HelpCommand">
+      <point x="0.0" y="-13.5" />
+      <point x="176.98973820297346" y="475.0" />
+      <point x="174.99999999999994" y="475.0" />
+      <point x="-41.0" y="13.5" />
+    </edge>
+    <edge source="ConsoleUI" target="PlayerUI">
+      <point x="27.0" y="-13.5" />
+      <point x="353.41475975005375" y="542.0" />
+      <point x="524.8010935143287" y="542.0" />
+      <point x="524.8010935143287" y="184.0" />
+      <point x="528.0275802628743" y="184.0" />
+      <point x="33.66666666666666" y="13.5" />
+    </edge>
+    <edge source="Game" target="Room">
+      <point x="24.0" y="-13.5" />
+      <point x="282.16475975005375" y="184.0" />
+      <point x="272.5647597500538" y="184.0" />
+      <point x="14.400000000000006" y="13.5" />
+    </edge>
+    <edge source="HelpCommand" target="CommandWords">
+      <point x="0.0" y="13.5" />
+      <point x="215.99999999999994" y="455.0" />
+      <point x="195.561166774402" y="455.0" />
+      <point x="18.571428571428555" y="-13.5" />
+    </edge>
+    <edge source="QuitCommand" target="Player">
+      <point x="41.0" y="-13.5" />
+      <point x="112.99999999999994" y="378.0" />
+      <point x="272.03975975005375" y="378.0" />
+      <point x="-32.625" y="13.5" />
+    </edge>
+    <edge source="Game" target="Player">
+      <point x="9.0" y="13.5" />
+      <point x="267.16475975005375" y="271.0" />
+      <point x="291.2801443654384" y="271.0" />
+      <point x="-13.384615384615387" y="-13.5" />
+    </edge>
+    <edge source="CommandWords" target="Command">
+      <point x="-18.571428571428555" y="-13.5" />
+      <point x="158.4183096315449" y="455.0" />
+      <point x="143.99999999999994" y="455.0" />
+      <point x="143.99999999999994" y="97.0" />
+      <point x="170.5435987215398" y="97.0" />
+      <point x="-14.099999999999966" y="13.5" />
+    </edge>
+    <edge source="ConsoleUI" target="Player">
+      <point x="9.0" y="-13.5" />
+      <point x="335.41475975005375" y="552.0" />
+      <point x="331.91475975005375" y="552.0" />
+      <point x="331.91475975005375" y="388.0" />
+      <point x="337.28975975005375" y="388.0" />
+      <point x="32.625" y="13.5" />
+    </edge>
+    <edge source="Player" target="Game">
+      <point x="-20.076923076923094" y="-13.5" />
+      <point x="284.58783667313065" y="281.0" />
+      <point x="249.16475975005375" y="281.0" />
+      <point x="-9.0" y="13.5" />
+    </edge>
+    <edge source="CommandWords" target="QuitCommand">
+      <point x="-37.14285714285711" y="-13.5" />
+      <point x="139.84688106011635" y="465.0" />
+      <point x="71.99999999999994" y="465.0" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="Player" target="PlayerUI">
+      <point x="40.15384615384616" y="-13.5" />
+      <point x="344.81860590389994" y="311.0" />
+      <point x="505.6942469295409" y="311.0" />
+      <point x="505.6942469295409" y="184.0" />
+      <point x="494.3609135962076" y="184.0" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="GoCommand" target="Player">
+      <point x="-40.5" y="13.5" />
+      <point x="328.3609135962076" y="164.0" />
+      <point x="336.6990384615384" y="164.0" />
+      <point x="336.6990384615384" y="261.0" />
+      <point x="311.3570674423614" y="261.0" />
+      <point x="6.692307692307679" y="-13.5" />
+    </edge>
+    <edge source="QuitCommand" target="Command">
+      <point x="-41.0" y="-13.5" />
+      <point x="30.999999999999943" y="388.0" />
+      <point x="40.693598721539786" y="388.0" />
+      <point x="40.693598721539786" y="77.0" />
+      <point x="151.7435987215398" y="77.0" />
+      <point x="-32.89999999999998" y="13.5" />
+    </edge>
+    <edge source="Command" target="Player">
+      <point x="4.699999999999989" y="13.5" />
+      <point x="189.34359872153976" y="87.0" />
+      <point x="199.4686059038999" y="87.0" />
+      <point x="199.4686059038999" y="311.0" />
+      <point x="264.5109135962076" y="311.0" />
+      <point x="-40.15384615384616" y="-13.5" />
+    </edge>
+    <edge source="GUI" target="PlayerUI">
+      <point x="24.375" y="-13.5" />
+      <point x="431.6964833369244" y="184.0" />
+      <point x="460.6942469295409" y="184.0" />
+      <point x="-33.666666666666664" y="13.5" />
+    </edge>
+    <edge source="HelpCommand" target="Player">
+      <point x="30.75" y="-13.5" />
+      <point x="246.74999999999994" y="388.0" />
+      <point x="293.78975975005375" y="388.0" />
+      <point x="-10.875" y="13.5" />
+    </edge>
+    <edge source="HelpCommand" target="Command">
+      <point x="-30.75" y="-13.5" />
+      <point x="185.24999999999994" y="97.0" />
+      <point x="179.9435987215398" y="97.0" />
+      <point x="-4.699999999999989" y="13.5" />
+    </edge>
+    <edge source="Player" target="Room">
+      <point x="0.0" y="-13.5" />
+      <point x="304.66475975005375" y="251.0" />
+      <point x="329.7434829059828" y="251.0" />
+      <point x="329.7434829059828" y="174.0" />
+      <point x="286.96475975005376" y="174.0" />
+      <point x="28.80000000000001" y="13.5" />
+    </edge>
+    <edge source="GUI" target="Command">
+      <point x="8.125000000000014" y="-13.5" />
+      <point x="415.4464833369244" y="174.0" />
+      <point x="433.3609135962076" y="174.0" />
+      <point x="433.3609135962076" y="57.0" />
+      <point x="217.5435987215398" y="57.0" />
+      <point x="32.900000000000034" y="13.5" />
+    </edge>
+    <edge source="GoCommand" target="Command">
+      <point x="27.0" y="-13.5" />
+      <point x="395.8609135962076" y="67.0" />
+      <point x="208.14359872153983" y="67.0" />
+      <point x="23.500000000000057" y="13.5" />
+    </edge>
+    <edge source="Player" target="GUI">
+      <point x="13.384615384615387" y="-13.5" />
+      <point x="318.04937513466916" y="271.0" />
+      <point x="382.9464833369244" y="271.0" />
+      <point x="-24.375" y="13.5" />
+    </edge>
+    <edge source="GUI" target="GoCommand">
+      <point x="-8.125" y="-13.5" />
+      <point x="399.1964833369244" y="174.0" />
+      <point x="382.3609135962076" y="174.0" />
+      <point x="13.5" y="13.5" />
+    </edge>
+    <edge source="ConsoleUI" target="Command">
+      <point x="45.0" y="-13.5" />
+      <point x="371.41475975005375" y="552.0" />
+      <point x="555.3609135962076" y="552.0" />
+      <point x="555.3609135962076" y="47.0" />
+      <point x="226.9435987215398" y="47.0" />
+      <point x="42.30000000000001" y="13.5" />
+    </edge>
+    <edge source="CommandWords" target="GoCommand">
+      <point x="55.71428571428572" y="-13.5" />
+      <point x="232.70402391725918" y="475.0" />
+      <point x="457.8839833369244" y="475.0" />
+      <point x="457.8839833369244" y="164.0" />
+      <point x="409.3609135962076" y="164.0" />
+      <point x="40.5" y="13.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9644588045234249" x="278.0" y="299.5" />
+  <SelectedNodes>
+    <node>PlayerUI</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

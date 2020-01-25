@@ -1,4 +1,4 @@
-import org.jetbrains.annotations.Contract;
+//import org.jetbrains.annotations.Contract;
 
 import java.util.*;
 
@@ -20,7 +20,7 @@ import java.util.*;
 public class Game implements Observable
 {
     private static Game game;
-    private static HashMap<Player,Room> playersMap;
+    private HashMap<Player,Room> playersMap;
     public Room startRoom;
 
     /**
@@ -32,9 +32,8 @@ public class Game implements Observable
         playersMap = new HashMap<Player, Room>();
     }
 
-    @Contract(pure = true)
-    public static HashMap<Player, Room> getPlayersMap() {
-        return playersMap;
+    public void setPlayerRoom(Player p, Room r){
+        playersMap.put(p,r);
     }
 
     public static Game getGame()
@@ -91,7 +90,7 @@ public class Game implements Observable
         player.println("");
         player.println("Welcome to The World of Zuul!");
         player.println("The World of Zuul is a new, incredibly boring adventure game.");
-        player.println("Type 'help' if you need help.");
+        player.println("Type 'help' if you need help.(only for ConsoleUI)");
         player.println("");
         player.println(player.getCurrentRoom().getLongDescription());
     }
@@ -112,26 +111,19 @@ public class Game implements Observable
         farewell(p);
         if(p.equals(playersMap.get(p))) {
             farewell(p);
-
         }
         System.out.println("Player " + p.getName() + " deleted!");
         if(playersMap.size() == 1){
             System.out.println("This is here Thank you for playing. Have a good day!");
         };
         playersMap.remove(p);
-        notifyPlayers(); //not sure if it is working yet
+        notifyPlayers();
     }
 
     public void notifyPlayers(){
         for (Observer observer : playersMap.keySet()){
             Player p = (Player) observer; // holds the last added player
-
-            System.out.println("Current room: " + p.getName() + " " + p.getCurrentRoom().getShortDescription());
-            System.out.println("Prev room: "+ p.getName()+ " " + p.getPreviousRoom().getShortDescription());
-int i = 0;
             for (Player player: playersMap.keySet()) {
-
-
                 //if we have two different players AND they are in the same room
                 if (!player.equals(p) && player.getCurrentRoom().equals(p.getCurrentRoom())) {
                     //if this player did not move AND someone else entered the room
@@ -144,17 +136,16 @@ int i = 0;
                 } else if (!player.equals(p)) {
                     //
                     if (p.getCurrentRoom().equals(player.getPreviousRoom())) {
-                        p.println("Player FIRST IF i= " + i + player.getName() + " left this room!");
+                        p.println("Player " +player.getName() + " left this room!");
                         continue;
                     }
                     if (player.getCurrentRoom().equals(p.getPreviousRoom())) {
-                        if (!p.getCurrentRoom().equals(player.getPreviousRoom())){
-                            player.println("Player i= "+i + p.getName() + " left this room!");
+                        {
+                            player.println("Player " + p.getName() + " left this room!");
                             continue;
                         }
                     }
                 }
-                i++;
             }
             observer.update(playersMap.get(observer).getRoom());
         }

@@ -4,6 +4,8 @@ import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+
 /**
  * Most simple Zuul graphical user interface class.
  * It can be used as an alternative to the console text interface.
@@ -17,6 +19,7 @@ public class GUI implements PlayerUI
 {
     private Player player;
     private JTextArea textArea;
+    private JTextField textField;
     DefaultCaret caret;
 
     /**
@@ -53,46 +56,69 @@ public class GUI implements PlayerUI
         contentPane.add(directionButtons, BorderLayout.EAST);
         
         
-        //start and quit buttons panel
-        JPanel mainButtons = new JPanel(new GridLayout(2,0));
-        JButton startButton = new JButton("Start");
-        JButton quitButton = new JButton("Quit");
-        //quit button panel
-        quitButton.addActionListener(e -> {
+//        //start and quit buttons panel
+//        JPanel mainButtons = new JPanel(new GridLayout(2,0));
+//        JButton startButton = new JButton("Start");
+//        JButton quitButton = new JButton("Quit");
+//        //quit button panel
+//        quitButton.addActionListener(e -> {
+//            QuitCommand quitCmd = new QuitCommand();
+//            quitCmd.setSecondWord(null);
+//            quitCmd.execute(player);
+//            closeWindow(frame);
+//        });
+//
+//        //start button panel
+//        startButton.addActionListener(e -> {
+//            String newName;
+//            Scanner scan = new Scanner(System.in);
+//            System.out.println("Enter new player name:");
+//            newName = scan.nextLine();
+//            Game.getGame().addPlayer(new Player(newName));
+//        });
+
+//        BoxLayout boxMainLayout = new BoxLayout(mainButtons, BoxLayout.Y_AXIS);
+//        mainButtons.setLayout(boxMainLayout);
+//        mainButtons.add(startButton);
+//        mainButtons.add(quitButton);
+//        contentPane.add(mainButtons, BorderLayout.WEST);
+
+        JMenuBar menuBar;
+        JMenu menu;
+        JMenuItem item1, item2;
+
+        //Create the menu bar.
+        menuBar = new JMenuBar();
+
+        //Build the first menu.
+        menu = new JMenu("Menu");
+        item1 = new JMenuItem("New Player");
+        item2 = new JMenuItem("Quit game");
+        menu.setMnemonic(KeyEvent.VK_A);
+        menu.getAccessibleContext().setAccessibleDescription(
+                "The only menu in this program that has menu items");
+        menu.add(item1);menu.add(item2);
+
+        item1.addActionListener(e -> {
+        String newName;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter new player name:");
+        newName = scan.nextLine();
+        Game.getGame().addPlayer(new Player(newName));
+    });
+
+        item2.addActionListener(e -> {
             QuitCommand quitCmd = new QuitCommand();
             quitCmd.setSecondWord(null);
             quitCmd.execute(player);
             closeWindow(frame);
         });
 
-        //start button panel
-        startButton.addActionListener(e -> {
-            String newName;
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Enter new player name:");
-            newName = scan.nextLine();
-            Game.getGame().addPlayer(new Player(newName));
-        });
-
-        BoxLayout boxMainLayout = new BoxLayout(mainButtons, BoxLayout.Y_AXIS);
-        mainButtons.setLayout(boxMainLayout);
-        mainButtons.add(startButton);
-        mainButtons.add(quitButton);
-        contentPane.add(mainButtons, BorderLayout.WEST);
-
-        JMenuBar menuBar;
-        JMenu menu, submenu;
-        JMenuItem menuItem;
-
-        //Create the menu bar.
-        menuBar = new JMenuBar();
-
-        //Build the first menu.
-        menu = new JMenu("A Menu");
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
         menuBar.add(menu);
+        frame.setJMenuBar(menuBar);
+
+        textField = new JTextField();
+        contentPane.add(textField, BorderLayout.SOUTH);
 
         frame.pack();
         frame.setVisible(true);

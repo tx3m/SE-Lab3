@@ -46,11 +46,11 @@ public class Player implements Observer
     public Player(String name)
     {
         this(name, false);
-    }    
+    }
 
     private void register()
     {
-        game= Game.getGame();
+        game = Game.getGame();
         game.addPlayer(this);
     }
 
@@ -77,7 +77,7 @@ public class Player implements Observer
     public void setCurrentRoom(Room room)
     {
         currentRoom = room;
-        Game.getGame().getPlayersMap().put(this,room); //added later
+        Game.getGame().setPlayerRoom(this,room);
     }
 
     /**
@@ -121,26 +121,26 @@ public class Player implements Observer
         System.out.println("Player [-GUI] YourPlayerName");                      
     }
 
-    /*Updates the Status of game and room*/
+    /*Updates the Status of room*/
     public void update(Room room){
-        this.setPreviousRoom(this.currentRoom); // was this.currentRoom before
+        this.setPreviousRoom(this.currentRoom);
         this.currentRoom = room;
     }
 
-//    public static void main(String [] argv)
-//    {
-//        boolean flagCUI=false;
-//        String name;
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("Enter player name:");
-//        name = scan.nextLine();
-//
-//        //What does this loop do?
-//        for(int i=0; i<argv.length; i++){
-//            if ( argv[i].equals("-GUI") ) flagCUI=true;
-//            else name= argv[i];
-//        }
-//
-//        new Player(name, flagCUI);
-//    }
+    public static void main(String [] argv)
+    {
+        boolean flagCUI=false;
+        String name;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter player name:");
+        name = scan.nextLine();
+
+        //What does this loop do?
+        for(int i=0; i<argv.length; i++){
+            if ( argv[i].equals("-GUI") ) flagCUI=true;
+            else name= argv[i];
+        }
+
+        new Player(name, flagCUI);
+    }
 }
